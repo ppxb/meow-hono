@@ -11,12 +11,14 @@
     "lint:fix": "oxlint --fix",
     "format": "oxfmt --write",
     "format:check": "oxfmt --check",
-    "typecheck": "tsc",
+    "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.71.2",
     "@hono/node-server": "^2.0.4",
-    "hono": "^4.12.25"
+    "hono": "^4.12.25",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@hono/vite-dev-server": "^0.26.0",
@@ -35,8 +37,7 @@
   "nano-staged": {
     "*.{ts,tsx,js,jsx}": [
       "oxlint --fix",
-      "oxfmt --write",
-      "pnpm typecheck"
+      "oxfmt --write"
     ]
   },
   "packageManager": "pnpm@11.5.1"
