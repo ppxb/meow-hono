@@ -30,13 +30,13 @@ const EnvSchema = z.object({
   /** 管理端 JWT 密钥 */
   ADMIN_JWT_SECRET: z.string().min(32, 'JWT 密钥长度至少 32 字符，建议使用强随机字符串'),
   /** OSS 访问密钥 ID */
-  ACCESS_KEY_ID: z.string(),
+  S3_ACCESS_KEY_ID: z.string(),
   /** OSS 访问密钥 */
-  SECRET_ACCESS_KEY: z.string(),
+  S3_SECRET_ACCESS_KEY: z.string(),
   /** OSS 终端节点 */
-  ENDPOINT: z.url(),
+  S3_ENDPOINT: z.url(),
   /** OSS 存储桶名称 */
-  BUCKET_NAME: z.string().default('default-bucket'),
+  S3_BUCKET_NAME: z.string().default('default-bucket'),
   /** Sentry 错误追踪 */
   SENTRY_DSN: z.string().optional(),
   /** 受信代理 IP */
