@@ -10,13 +10,13 @@
   },
   "dependencies": {
     "@hono/node-server": "^2.0.4",
-    "hono": "^4.12.23"
+    "hono": "^4.12.25"
   },
   "devDependencies": {
     "@hono/vite-dev-server": "^0.26.0",
     "@types/node": "^25.9.1",
-    "oxfmt": "^0.53.0",
-    "oxlint": "^1.68.0",
+    "oxfmt": "^0.54.0",
+    "oxlint": "^1.69.0",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
     "vite": "^8.0.16"
