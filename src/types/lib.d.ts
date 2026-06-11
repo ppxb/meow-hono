@@ -1,3 +1,5 @@
+import type { OpenAPIHono, RouteHandler, RouteConfig as HonoRouteConfig } from '@hono/zod-openapi'
+import type { Schema } from 'hono'
 import type { PinoLogger } from 'hono-pino'
 import type { JWTPayload } from 'hono/utils/jwt/types'
 
@@ -38,3 +40,38 @@ export type JwtBindings<TPayload extends BaseJwtPayload = BaseJwtPayload> = {
 
 /** 管理端绑定（带角色的 JWT + RBAC） */
 export type AdminBindings = JwtBindings<AdminJwtPayload>
+
+/** 客户端绑定（仅含 sub 的 JWT） */
+export type ClientBindings = JwtBindings<ClientJwtPayload>
+
+/** 公开端绑定（无 JWT） */
+export type PublicBindings = BaseBindings
+
+/** 任意 tier bindings 的通用 OpenAPI 类型 */
+export type OpenAPIWithBindings<
+  TBindings extends BaseBindings,
+  S extends Schema = {}
+> = OpenAPIHono<TBindings, S>
+
+/** 任意 tier bindings 的通用路由处理器类型 */
+export type RouteHandlerWithBindings<
+  R extends HonoRouteConfig,
+  TBindings extends BaseBindings
+> = RouteHandler<R, TBindings>
+
+export type AdminOpenAPI<S extends Schema = {}> = OpenAPIWithBindings<AdminBindings, S>
+export type ClientOpenAPI<S extends Schema = {}> = OpenAPIWithBindings<ClientBindings, S>
+export type PublicOpenAPI<S extends Schema = {}> = OpenAPIWithBindings<PublicBindings, S>
+
+export type AdminRouteHandler<R extends HonoRouteConfig> = RouteHandlerWithBindings<
+  R,
+  AdminBindings
+>
+export type ClientRouteHandler<R extends HonoRouteConfig> = RouteHandlerWithBindings<
+  R,
+  ClientBindings
+>
+export type PublicRouteHandler<R extends HonoRouteConfig> = RouteHandlerWithBindings<
+  R,
+  PublicBindings
+>
