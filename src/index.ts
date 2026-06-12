@@ -1,11 +1,5 @@
-import { Hono } from 'hono'
+import { createConfiguredApp } from '@/lib/core/create-configured-app'
 
-export default function createApp() {
-  const app = new Hono()
+const app = createConfiguredApp()
 
-  app.get('/', c => {
-    return c.text('Hello Hono!')
-  })
-
-  return app
-}
+export default app
